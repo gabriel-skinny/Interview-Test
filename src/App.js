@@ -16,6 +16,7 @@ function App() {
   const [errorMessage, setErrorMessage] = useState();
   
   async function handleSubmit(e) {
+    setError(false);
     e.preventDefault();
     
     const data = {
@@ -30,8 +31,7 @@ function App() {
       const schema = Yup.object().shape({
         nome: Yup.string().required("Nome é obrigatorio"),
         enderco: Yup.string().required("Endereço obrigatorio"),
-        telefone: Yup.number().required("Telefone obrigatorio"),
-        password: Yup.string().min(6, "Senha tem que ter mais de 6 caracteres"),
+        telefone: Yup.number("Apenas numeros podem ser digitados").required("Telefone obrigatorio"),
         email: Yup.string().email("Precisa ser um E-mail valido").required("E-mail é obrigatorio"),
         dataDeNacismento: Yup.date().required("Data de nacismento obrigatoria")
       })
